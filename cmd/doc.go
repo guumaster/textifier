@@ -24,4 +24,4 @@
 
 
 */
-package main
+package cmd

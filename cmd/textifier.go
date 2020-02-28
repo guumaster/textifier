@@ -1,4 +1,4 @@
-package main
+package cmd
 
 import (
 	"os"
@@ -9,7 +9,7 @@ import (
 	"github.com/guumaster/textifier/internal"
 )
 
-func main() {
+func Execute() {
 	textifier := internal.Action{}
 
 	app := &cli.App{
