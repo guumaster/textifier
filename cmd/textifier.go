@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"os"
+	"time"
 
 	"github.com/kyokomi/emoji"
 	"github.com/urfave/cli/v2"
@@ -9,7 +10,22 @@ import (
 	"github.com/guumaster/textifier/internal"
 )
 
-func Execute() {
+var (
+	Version = ""
+	Commit  = ""
+	Date    = ""
+)
+
+func Execute(version, commit, date string) int {
+
+	Version = version
+	Commit = commit
+	if date != "" {
+		Date = date
+	} else {
+		Date = time.Now().UTC().Format(time.RFC3339)
+	}
+
 	textifier := internal.Action{}
 
 	app := &cli.App{
@@ -78,5 +94,8 @@ func Execute() {
 		Action: textifier.Run,
 	}
 
-	app.Run(os.Args)
+	if err := app.Run(os.Args); err != nil {
+		return 1
+	}
+	return 0
 }

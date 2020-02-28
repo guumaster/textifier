@@ -18,11 +18,11 @@ func ExampleCircle() {
 
 // Converts same as Circle but with background
 func ExampleCircleInverse() {
-	text := transform.Circle("hello world")
+	text := transform.CircleInverse("hello world")
 	fmt.Println(text)
 
 	// Output:
-	// 🅗🅔🅛🅛🅞
+	// 🅗🅔🅛🅛🅞 🅦🅞🅡🅛🅓
 }
 
 // Converts emoji codes like GitHub or Slack
@@ -31,7 +31,7 @@ func ExampleEmoji() {
 	fmt.Println(text)
 
 	// Output:
-	// 💥 Hello 🍺 World! 🌎
+	// 💥  Hello 🍺  World! 🌎
 }
 
 // Turns the text upside down
@@ -40,7 +40,7 @@ func ExampleFlip() {
 	fmt.Println(text)
 
 	// Output:
-	// plɹoM ollǝH
+	// Hǝllo Moɹlp
 }
 
 // Change direction of the whole text
@@ -58,7 +58,7 @@ func ExampleSpacer() {
 	fmt.Println(text)
 
 	// Output:
-	// H e l l o  W o r l d
+	// H e l l o   W o r l d
 }
 
 // Converts all characters to squared characters
@@ -72,7 +72,7 @@ func ExampleSquare() {
 
 // Same as Square but with filled background
 func ExampleSquareInverse() {
-	text := transform.Square("Hello World")
+	text := transform.SquareInverse("Hello World")
 	fmt.Println(text)
 
 	// Output:
@@ -88,9 +88,9 @@ func ExampleCompose() {
 		transform.Spacer,
 		transform.Emoji,
 	)
-	text := tr(":boom: Hello World")
+	text := tr(">>>:boom: Hello World<<<")
 	fmt.Println(text)
 
 	// Output:
-	// 🅳 🅻 🆁 🅾 🆆   🅾 🅻 🅻 🅴 🅷     💥
+	//  < < < 🅳 🅻 🆁 🅾 🆆   🅾 🅻 🅻 🅴 🅷     💥 > > >
 }
