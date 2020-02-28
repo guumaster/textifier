@@ -3,6 +3,15 @@ A really silly and simple tool to transform text on your terminal or Go program.
 
 [![GoDoc](https://godoc.org/github.com/guumaster/textifier?status.svg)](https://pkg.go.dev/github.com/guumaster/textifier)
 
+## Installation
+
+### With Go tools
+```
+go get -u github.com/guumaster/textifier
+
+go install github.com/guumaster/textifier
+```
+
 
 ## Usage
 
@@ -25,6 +34,11 @@ A really silly and simple tool to transform text on your terminal or Go program.
 	   --mirror, -m   reverse direction (default: false)
 	   --help, -h     show help (default: false)
 	   --version, -v  print the version (default: false)
+
+
+## References
+
+ * Make use of [kyokomi/emoji](https://github.com/kyokomi/emoji)
 
 
 ## License
