@@ -1,10 +1,6 @@
-# textifier
-A really silly and simple tool to transform text on your terminal or Go program.
-
-[![GoDoc](https://godoc.org/github.com/guumaster/textifier?status.svg)](https://pkg.go.dev/github.com/guumaster/textifier)
-
-
-## Usage
+// textifier cli is a tool to convert strings or files to funny formats.
+//
+/*
 
 	USAGE:
 	   textifier <TEXT_TO_TRANSFORM>
@@ -27,6 +23,5 @@ A really silly and simple tool to transform text on your terminal or Go program.
 	   --version, -v  print the version (default: false)
 
 
-## License
-
-The content of this project itself is licensed under the [Creative Commons Attribution 3.0 Unported license](https://creativecommons.org/licenses/by/3.0/), and the underlying source code used to format and display that content is licensed under the [MIT license](LICENSE).
+*/
+package main

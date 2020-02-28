@@ -1,19 +1,16 @@
 package transform
 
 import (
-	"github.com/kyokomi/emoji"
+	"unicode"
+
 	"golang.org/x/text/transform"
 	"golang.org/x/text/unicode/norm"
-	"strings"
-	"unicode"
 )
-
-// StringFn a function to transform a string to other strings
-type StringFn func(string) string
 
 var translated = map[string]map[int]rune{}
 var normalizer transform.Transformer
 
+// initialize the character maps and translations
 func init() {
 	normalizer = transform.Chain(norm.NFD, transform.RemoveFunc(isMn), norm.NFC)
 
@@ -39,66 +36,6 @@ func init() {
 			count++
 		}
 	}
-}
-
-// Compose combie two transformers together
-func Compose(a, b StringFn) StringFn {
-	return func(s string) string {
-		return a(b(s))
-	}
-}
-
-// Reverse return a string in reverse order
-func Reverse(value string) string {
-	data := []rune(value)
-	result := []rune{}
-
-	for i := len(data) - 1; i >= 0; i-- {
-		result = append(result, data[i])
-	}
-	return string(result)
-}
-
-func Double(str string) string {
-	return translate("double", str)
-}
-
-func Square(str string) string {
-	return translate("square", str)
-}
-
-func Flip(str string) string {
-	return translate("flip", str)
-}
-
-func Circle(str string) string {
-	return translate("circle", str)
-}
-
-func CircleInverse(str string) string {
-	return translate("circle_inverse", str)
-}
-
-func SquareInverse(str string) string {
-	return translate("square_inverse", str)
-}
-
-// Spacer add spaces between letters
-func Spacer(s string) string {
-	newStr := []rune("")
-	for _, r := range s {
-		newStr = append(newStr, r)
-		newStr = append(newStr, ' ')
-	}
-	return string(newStr)
-}
-
-func Emoji(s string) string {
-	return emoji.Sprint(s)
-}
-
-func Upper(s string) string {
-	return strings.ToUpper(s)
 }
 
 func translate(key, str string) string {

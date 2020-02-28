@@ -1,4 +1,4 @@
-package main
+package internal
 
 import (
 	"bufio"
@@ -6,17 +6,18 @@ import (
 	"os"
 	"strings"
 
-	"github.com/guumaster/textifier/transform"
 	"github.com/urfave/cli/v2"
+
+	"github.com/guumaster/textifier/pkg/transform"
 )
 
 // Textifier transform strings
-type Textifier struct {
+type Action struct {
 }
 
 // Action is the function added to the CLI
-func (t *Textifier) Action(c *cli.Context) error {
-	tr := t.getTransformer(c)
+func (t *Action) Run(c *cli.Context) error {
+	tr := t.composeTransformers(c)
 
 	// input piped to stdin
 	if t.isPiped() {
@@ -27,7 +28,7 @@ func (t *Textifier) Action(c *cli.Context) error {
 		}
 
 		if err := scanner.Err(); err != nil {
-			cli.Exit(err, 1)
+			return cli.Exit(err, 1)
 		}
 
 		for i := range lines {
@@ -47,7 +48,7 @@ func (t *Textifier) Action(c *cli.Context) error {
 	}
 
 	// normal input args
-	words := []string{}
+	words := make([]string, c.NArg())
 	for i := 0; i < c.NArg(); i++ {
 		words = append(words, c.Args().Get(i))
 	}
@@ -65,7 +66,7 @@ func (t *Textifier) Action(c *cli.Context) error {
 	return nil
 }
 
-func (t *Textifier) isPiped() bool {
+func (t *Action) isPiped() bool {
 	info, err := os.Stdin.Stat()
 	if err != nil {
 		panic(err)
@@ -74,34 +75,40 @@ func (t *Textifier) isPiped() bool {
 	return !notPipe
 }
 
-func (t *Textifier) getTransformer(c *cli.Context) transform.StringFn {
+func (t *Action) composeTransformers(c *cli.Context) transform.StringFn {
 	var tr transform.StringFn
 
-	if c.Bool("circle") && c.Bool("inverse") {
+	switch {
+	case c.Bool("circle") && c.Bool("inverse"):
 		tr = transform.CircleInverse
-	} else if c.Bool("circle") {
+	case c.Bool("circle"):
 		tr = transform.Circle
-	} else if c.Bool("square") && c.Bool("inverse") {
+	case c.Bool("square") && c.Bool("inverse"):
 		tr = transform.SquareInverse
-	} else if c.Bool("square") {
+	case c.Bool("square"):
 		tr = transform.Square
-	} else if c.Bool("double") {
+	case c.Bool("double"):
 		tr = transform.Double
-	} else {
+	case c.Bool("mirror"):
+		tr = transform.Reverse
+	default:
 		tr = transform.Compose(transform.Reverse, transform.Flip)
 	}
 
-	// Add space between letters
 	if c.Bool("space") {
 		tr = transform.Compose(tr, transform.Spacer)
 	}
 	if c.Bool("upper") {
-		tr = transform.Compose(tr, transform.Upper)
+		tr = transform.Compose(tr, strings.ToUpper)
 	}
 
-	// Parse emojis
 	if c.Bool("emoji") {
 		tr = transform.Compose(tr, transform.Emoji)
 	}
+
+	if c.Bool("reverse") {
+		tr = transform.Compose(tr, transform.Reverse)
+	}
+
 	return tr
 }

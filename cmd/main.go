@@ -5,10 +5,12 @@ import (
 
 	"github.com/kyokomi/emoji"
 	"github.com/urfave/cli/v2"
+
+	"github.com/guumaster/textifier/internal"
 )
 
 func main() {
-	textifier := Textifier{}
+	textifier := internal.Action{}
 
 	app := &cli.App{
 		Name:      "textifier",
@@ -16,7 +18,7 @@ func main() {
 		Version:   "v1.0.0",
 		UsageText: "textifier <TEXT_TO_TRANSFORM>\n   cat some_file | textifier",
 		Authors: []*cli.Author{
-			&cli.Author{
+			{
 				Name:  emoji.Sprint(":email: guumaster"),
 				Email: "guuweb@gmail.com",
 			},
@@ -67,8 +69,13 @@ func main() {
 				Usage:   "parse emoji icons",
 				Aliases: []string{"e"},
 			},
+			&cli.BoolFlag{
+				Name:    "mirror",
+				Usage:   "reverse direction",
+				Aliases: []string{"m"},
+			},
 		},
-		Action: textifier.Action,
+		Action: textifier.Run,
 	}
 
 	app.Run(os.Args)
