@@ -1,5 +1,7 @@
-[![goreportcard](https://goreportcard.com/badge/github.com/guumaster/textifier)](https://goreportcard.com/report/github.com/guumaster/textifier)
-[![tests](https://github.com/guumaster/textifier/workflows/Test/badge.svg)](https://github.com/guumaster/textifier/actions?query=workflow%3ATest)
+[![Tests](https://img.shields.io/github/workflow/status/guumaster/textifier/Test)](https://github.com/guumaster/textifier/actions?query=workflow%3ATest)
+[![GitHub Release](https://img.shields.io/github/release/guumaster/textifier.svg?logo=github&labelColor=262b30)](https://github.com/guumaster/textifier/releases)
+[![Go Report Card](https://goreportcard.com/badge/github.com/guumaster/textifier)](https://goreportcard.com/report/github.com/guumaster/textifier)
+[![License](https://img.shields.io/github/license/guumaster/textifier)](https://github.com/guumaster/textifier/LICENSE)
 
 # textifier
 A simple tool to transform text on your terminal or Go program.
@@ -92,9 +94,9 @@ $> textifier -s -q "hello world"
 
 ## References
 
- * Make use of [kyokomi/emoji](https://github.com/kyokomi/emoji)
+ * Uses [kyokomi/emoji](https://github.com/kyokomi/emoji) to parse emojis.
 
 
 ## License
 
-The content of this project itself is licensed under the [Creative Commons Attribution 3.0 Unported license](https://creativecommons.org/licenses/by/3.0/), and the underlying source code used to format and display that content is licensed under the [MIT license](LICENSE).
+ [MIT license](LICENSE)
