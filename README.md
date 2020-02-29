@@ -1,7 +1,8 @@
 # textifier
 A really silly and simple tool to transform text on your terminal or Go program.
 
-[![GoDoc](https://godoc.org/github.com/guumaster/textifier?status.svg)](https://pkg.go.dev/github.com/guumaster/textifier)
+[GoDoc command reference](https://pkg.go.dev/github.com/guumaster/textifier/cmd?tab=doc)
+[GoDoc transfomers reference](https://pkg.go.dev/github.com/guumaster/textifier@v1.0.0/pkg/transform?tab=doc)
 
 ## Installation
 

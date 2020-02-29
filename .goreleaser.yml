@@ -8,19 +8,15 @@ builds:
       - darwin
       - windows
     goarch:
-      - 386
       - amd64
     ldflags:
       - -s -w -X main.version={{.Version}} -X main.commit={{.ShortCommit}} -X main.date={{.Date}}
-archive:
-  replacements:
-    darwin: Darwin
-    linux: Linux
-    windows: Windows
-    386: i386
-    amd64: x86_64
-checksum:
-  name_template: 'checksums.txt'
+archives:
+  -
+    replacements:
+      darwin: MacOS
+      linux: Linux
+      windows: Windows
 changelog:
   sort: asc
   filters:
