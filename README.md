@@ -54,12 +54,14 @@ go get -u github.com/guumaster/textifier
 	    transform.Spacer,
 	    transform.Emoji,
 	  )
+
 	  fmt.Println(f(":boom: Hello World :beer:"))
 	}
   // Output:
   // 💥     🅗 🅔 🅛 🅛 🅞   🅦 🅞 🅡 🅛 🅓   🍺
 
 ```
+[Run in playground](https://play.golang.org/p/kZK8MZTeTLH)
 
 ## CLI Usage
 ```
