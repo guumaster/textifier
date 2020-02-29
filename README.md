@@ -94,6 +94,7 @@ $> textifier -s -q "hello world"
 
 ## References
 
+ * Uses [urfave/cli](https://github.com/urfave/cli) to run as CLI.
  * Uses [kyokomi/emoji](https://github.com/kyokomi/emoji) to parse emojis.
 
 
