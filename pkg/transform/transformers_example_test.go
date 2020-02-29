@@ -82,15 +82,14 @@ func ExampleSquareInverse() {
 // This example show how to compose more than one transformer together
 func ExampleCompose() {
 	tr := transform.Compose(
-		transform.Reverse,
 		strings.ToUpper, // <- Note that you can use any other function with same signature as StringFn
 		transform.SquareInverse,
 		transform.Spacer,
 		transform.Emoji,
 	)
-	text := tr(">>>:boom: Hello World<<<")
+	text := tr("Hello World :boom:")
 	fmt.Println(text)
 
 	// Output:
-	//  < < < 🅳 🅻 🆁 🅾 🆆   🅾 🅻 🅻 🅴 🅷     💥 > > >
+	// 🅷 🅴 🅻 🅻 🅾   🆆 🅾 🆁 🅻 🅳   💥
 }

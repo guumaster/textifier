@@ -1,4 +1,4 @@
-// transform package contains all base functions to transform one string to another
+// Package transform contains all base functions to transform one string to another
 package transform
 
 import (
@@ -31,14 +31,13 @@ func Flip(str string) string {
 }
 
 // Reverse return a string in reverse order
-func Reverse(value string) string {
-	data := []rune(value)
-	result := make([]rune, len(data))
-
+func Reverse(s string) string {
+	data := []rune(s)
+	newStr := []rune("")
 	for i := len(data) - 1; i >= 0; i-- {
-		result = append(result, data[i])
+		newStr = append(newStr, data[i])
 	}
-	return string(result)
+	return string(newStr)
 }
 
 // Spacer add spaces between letters
@@ -56,7 +55,7 @@ func Square(str string) string {
 	return translate("square", str)
 }
 
-// Square same as Square but with filled background
+// SquareInverse same as Square but with filled background
 func SquareInverse(str string) string {
 	return translate("square_inverse", str)
 }

@@ -1,8 +1,9 @@
-// textifier cli is a tool to convert strings or files to funny formats.
+// Package cmd for contains the code to execute is as a CLI tool to convert strings or files to funny formats.
 //
 /*
 
-	USAGE:
+CLI USAGE:
+
 	   textifier <TEXT_TO_TRANSFORM>
 	   cat some_file | textifier
 
@@ -22,6 +23,26 @@
 	   --help, -h     show help (default: false)
 	   --version, -v  print the version (default: false)
 
+
+MODULE USAGE:
+
+	package main
+
+	import (
+	  "fmt"
+	  "github.com/guumaster/textifier/pkg/transform"
+	)
+
+	func main() {
+	  f := transform.Compose(
+	    transform.CircleInverse,
+	    transform.Spacer,
+	    transform.Emoji,
+	  )
+	  fmt.Println(f(":boom: Hello World :beer:"))
+	}
+  // Output:
+  // 💥     🅗 🅔 🅛 🅛 🅞   🅦 🅞 🅡 🅛 🅓   🍺
 
 */
 package cmd

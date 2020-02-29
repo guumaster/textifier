@@ -11,17 +11,17 @@ import (
 	"github.com/guumaster/textifier/pkg/transform"
 )
 
-// Textifier transform strings
+// Action is the struct with all the helpers to process files or pipes
 type Action struct {
 }
 
-// Action is the function added to the CLI
-func (t *Action) Run(c *cli.Context) error {
-	tr := t.composeTransformers(c)
+// Run is the entrypoint function in the CLI command
+func (a *Action) Run(c *cli.Context) error {
+	tr := a.composeTransformers(c)
 
 	// input piped to stdin
-	if t.isPiped() {
-		lines := []string{}
+	if a.isPiped() {
+		var lines []string
 		scanner := bufio.NewScanner(os.Stdin)
 		for scanner.Scan() {
 			lines = append(lines, tr(scanner.Text()))
@@ -66,7 +66,7 @@ func (t *Action) Run(c *cli.Context) error {
 	return nil
 }
 
-func (t *Action) isPiped() bool {
+func (a *Action) isPiped() bool {
 	info, err := os.Stdin.Stat()
 	if err != nil {
 		panic(err)
@@ -75,7 +75,7 @@ func (t *Action) isPiped() bool {
 	return !notPipe
 }
 
-func (t *Action) composeTransformers(c *cli.Context) transform.StringFn {
+func (a *Action) composeTransformers(c *cli.Context) transform.StringFn {
 	var tr transform.StringFn
 
 	switch {

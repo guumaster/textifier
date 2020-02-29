@@ -1,22 +1,72 @@
-# textifier
-A really silly and simple tool to transform text on your terminal or Go program.
+[![goreportcard](https://goreportcard.com/badge/github.com/guumaster/textifier)](https://goreportcard.com/report/github.com/guumaster/textifier)
 
-[GoDoc command reference](https://pkg.go.dev/github.com/guumaster/textifier/cmd?tab=doc)
-[GoDoc transfomers reference](https://pkg.go.dev/github.com/guumaster/textifier@v1.0.0/pkg/transform?tab=doc)
+# textifier
+A simple tool to transform text on your terminal or Go program.
+
+* [Transformers doc](https://pkg.go.dev/github.com/guumaster/textifier@v1.0.0/pkg/transform?tab=doc)
 
 ## Installation
+
+
+### Install binary directly
+
+Feel free to change the path from `/usr/local/bin`, just make sure `textifier` is available on your `$PATH` (check with `textifier -h`).
+
+#### Linux/MacOS
+
+```
+$ curl -sfL https://install.goreleaser.com/github.com/guumaster/textifier/install.sh | bash -s -- -b /usr/local/bin
+
+// Depending on the path you may need sudo
+$ curl -sfL https://install.goreleaser.com/github.com/guumaster/textifier/install.sh | sudo bash -s -- -b /usr/local/bin
+```
+
+
+### Release page download
+
+Go to the [Release page](https://github.com/guumaster/textifier/releases) and pick one.
+
 
 ### With Go tools
 ```
 go get -u github.com/guumaster/textifier
 
-go install github.com/guumaster/textifier
 ```
 
+## Module Usage
 
-## Usage
+```
+	package main
 
-	USAGE:
+	import (
+	  "fmt"
+	  "github.com/guumaster/textifier/pkg/transform"
+	)
+
+	func main() {
+	  f := transform.Compose(
+	    transform.CircleInverse,
+	    transform.Spacer,
+	    transform.Emoji,
+	  )
+	  fmt.Println(f(":boom: Hello World :beer:"))
+	}
+  // Output:
+  // 💥     🅗 🅔 🅛 🅛 🅞   🅦 🅞 🅡 🅛 🅓   🍺
+
+```
+
+## CLI Usage
+```
+$> textifier -s -q "hello world"
+// Output:
+//  🄷 🄴 🄻 🄻 🄾   🅆 🄾 🅁 🄻 🄳 
+```
+
+## CLI Options
+
+```
+    USAGE: 
 	   textifier <TEXT_TO_TRANSFORM>
 	   cat some_file | textifier
 
@@ -35,7 +85,7 @@ go install github.com/guumaster/textifier
 	   --mirror, -m   reverse direction (default: false)
 	   --help, -h     show help (default: false)
 	   --version, -v  print the version (default: false)
-
+```
 
 ## References
 

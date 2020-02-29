@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"os"
-	"time"
 
 	"github.com/kyokomi/emoji"
 	"github.com/urfave/cli/v2"
@@ -11,27 +10,21 @@ import (
 )
 
 var (
+	// Version placeholder for the version number filled by goreleaser
 	Version = ""
-	Commit  = ""
-	Date    = ""
 )
 
-func Execute(version, commit, date string) int {
+// Execute runs the CLI command
+func Execute(version string) int {
 
 	Version = version
-	Commit = commit
-	if date != "" {
-		Date = date
-	} else {
-		Date = time.Now().UTC().Format(time.RFC3339)
-	}
 
 	textifier := internal.Action{}
 
 	app := &cli.App{
 		Name:      "textifier",
 		Usage:     "convert a string to different formats",
-		Version:   "v1.0.0",
+		Version:   Version,
 		UsageText: "textifier <TEXT_TO_TRANSFORM>\n   cat some_file | textifier",
 		Authors: []*cli.Author{
 			{
