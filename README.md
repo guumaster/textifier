@@ -1,4 +1,5 @@
 [![goreportcard](https://goreportcard.com/badge/github.com/guumaster/textifier)](https://goreportcard.com/report/github.com/guumaster/textifier)
+[![tests](https://github.com/guumaster/textifier/workflows/Test/badge.svg)](https://github.com/guumaster/textifier/actions?query=workflow%3ATest)
 
 # textifier
 A simple tool to transform text on your terminal or Go program.
