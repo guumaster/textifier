@@ -16,10 +16,12 @@ Feel free to change the path from `/usr/local/bin`, just make sure `textifier` i
 #### Linux/MacOS
 
 ```
-$ curl -sfL https://install.goreleaser.com/github.com/guumaster/textifier/install.sh | bash -s -- -b /usr/local/bin
+$ curl -sfL https://raw.githubusercontent.com/guumaster/textifier/master/install.sh | bash -s -- -b /usr/local/bin
+```
 
-// Depending on the path you may need sudo
-$ curl -sfL https://install.goreleaser.com/github.com/guumaster/textifier/install.sh | sudo bash -s -- -b /usr/local/bin
+Depending on the path you choose, it may need `sudo`
+```
+$ curl -sfL https://raw.githubusercontent.com/guumaster/textifier/master/install.sh | sudo bash -s -- -b /usr/local/bin
 ```
 
 
